@@ -12,7 +12,7 @@ const requireComponent = require.context(
   /Base[A-Z]\w+\.(vue|js)$/
 );
 
-let app = createApp(App).use(router);
+const app = createApp(App).use(router);
 
 // Also required for Base components
 requireComponent.keys().forEach((fileName) => {

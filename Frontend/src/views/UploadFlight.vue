@@ -4,15 +4,19 @@
   </div>
 </template>
 
-<script>
-import UploadForm from "@/components/UploadForm";
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import UploadForm from "@/components/UploadForm.vue";
+export default defineComponent({
   name: "UploadFlight",
   components: {
     UploadForm,
   },
   data() {
-    return {};
+    return {
+      foo: null,
+    };
   },
-};
+});
 </script>

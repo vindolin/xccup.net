@@ -29,7 +29,7 @@
 // It's to ineffective and you can do better now.
 
 import { ref } from "vue";
-import FlightService from "@/services/FlightService.js";
+import FlightService from "@/services/FlightService.ts";
 import MapV2 from "@/components/MapV2";
 import Airbuddies from "@/components/Airbuddies";
 import Barogramm from "@/components/Barogramm.vue";

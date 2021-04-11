@@ -29,7 +29,7 @@ export default {
   getFlights() {
     return apiClient.get("/flights");
   },
-  getFlight(flightId) {
+  getFlight(flightId: number) {
     return apiClient.get("/flights/" + flightId);
   },
   getPilots() {
@@ -47,10 +47,10 @@ export default {
   getDescription() {
     return apiClient2.get("/flightDescription");
   },
-  uploadFlight(data) {
+  uploadFlight(data: any) {
     return apiClient.post("/flights/upload", data);
   },
-  getAirbuddies(flightId) {
+  getAirbuddies(flightId: number) {
     return apiClient.get("/airbuddies/" + flightId);
   },
 };
