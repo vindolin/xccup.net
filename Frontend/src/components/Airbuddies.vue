@@ -50,16 +50,19 @@
   </div>
 </template>
 
-<script>
-import trackColors from "@/assets/js/trackColors";
-import FlightService from "@/services/FlightService";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+import trackColors from "../assets/js/trackColors";
+import FlightService from "../services/FlightService";
+import { AirbuddyTrack } from "../types";
+
+export default defineComponent({
   name: "Airbuddies",
   data() {
     return {
-      checkedFlights: [],
-      buddyFlights: null,
+      checkedFlights: [] as String[],
+      buddyFlights: [] as AirbuddyTrack[],
       trackColors: trackColors,
       loaded: false,
     };
@@ -73,7 +76,10 @@ export default {
   methods: {
     async getFlights() {
       try {
-        if (!this.buddyFlights && this.flight.airbuddies.length > 0) {
+        if (
+          this.buddyFlights.length === 0 &&
+          this.flight.airbuddies.length > 0
+        ) {
           // await new Promise((resolve) => setTimeout(resolve, 2000));
           let response = await FlightService.getAirbuddies(this.flight._id);
           this.buddyFlights = response.data;
@@ -86,8 +92,9 @@ export default {
   },
   watch: {
     checkedFlights() {
-      let airbuddyTracks = [];
-      this.buddyFlights.forEach((element) => {
+      let airbuddyTracks: AirbuddyTrack[] = [];
+
+      this.buddyFlights.forEach((element: AirbuddyTrack) => {
         airbuddyTracks.push({
           buddyName: element.buddyName,
           buddyFlightId: element.buddyFlightId,
@@ -99,7 +106,7 @@ export default {
     },
   },
   emits: ["updateAirbuddies"],
-};
+});
 </script>
 
 >

@@ -46,9 +46,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import { format } from "date-fns";
-export default {
+export default defineComponent({
   name: "Comments",
   props: {
     comments: {
@@ -64,16 +66,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      let comment = {
+      let commentItem = {
         comment: this.comment,
         name: "Me",
         date: new Date(),
       };
-      this.$emit("comment-submitted", comment);
+      this.$emit("comment-submitted", commentItem);
       this.comment = "";
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

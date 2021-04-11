@@ -13,7 +13,7 @@ export interface Flight {
   landingTime: string;
   description: string;
   gliderType: string;
-  rankingClass: string;
+  rankingClass: RankingClass;
   flightDuration: string;
 }
 
@@ -28,4 +28,20 @@ export interface GPSFix {
   longitude: number;
   timestamp: number;
   elevation: number;
+}
+enum RankingClass {
+  gsSport, 
+  gsIntermediate,
+  gsPerformance,
+  gsComp,
+  gsTandem,
+  hgFlex,
+  hgStarr
+}
+
+export interface AirbuddyTrack {
+  buddyName: string
+  buddyFlightId: string
+  isActive: boolean
+  fixes: [GPSFix]
 }

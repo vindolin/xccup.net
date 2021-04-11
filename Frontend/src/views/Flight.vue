@@ -23,7 +23,7 @@
   <Comments :comments="comments" @comment-submitted="addComment" />
 </template>
 
-<script lang="ts">
+<script lang="js">
 // !!! Note to my future self !!!
 // The connection between Airbuddies, Barogramm and Map needs refactoring.
 // It's to ineffective and you can do better now.
@@ -41,7 +41,7 @@ import InlineAlert from "@/components/InlineAlert.vue";
 import FlightDetails from "@/components/FlightDetails.vue";
 import Comments from "@/components/Comments.vue";
 import FlightDescription from "@/components/FlightDescription.vue";
-import { Flight } from "@/types";
+// import { Flight } from "@/types";
 
 export default defineComponent({
   components: {
@@ -85,8 +85,8 @@ export default defineComponent({
     updateAirbuddies(buddyTracks) {
       this.buddyTracks = buddyTracks;
     },
-    addComment(comment) {
-      this.comments.push(comment);
+    addComment(commentItem) {
+      this.comments.push(commentItem);
     },
   },
   watch: {

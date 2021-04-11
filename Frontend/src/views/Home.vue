@@ -5,7 +5,7 @@
   <Sponsors />
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import DailyRanking from "@/components/rankings/DailyRanking.vue";
 import Infobox from "@/components/Infobox.vue";
