@@ -16,8 +16,8 @@
     :flight="this.flight"
     @updateAirbuddies="updateAirbuddies"
   />
-  <Inline-alert text="Hover mit Höhenanzeige fehlt noch." />
-  <Inline-alert text="Automatisches zentrieren fehlt noch" />
+  <InlineAlert text="Hover mit Höhenanzeige fehlt noch." />
+  <InlineAlert text="Automatisches zentrieren fehlt noch" />
   <FlightDetails :flight="this.flight" :pilot="this.pilot" />
   <FlightDescription :description="description" />
   <Comments :comments="comments" @comment-submitted="addComment" />
@@ -31,16 +31,16 @@
 import { defineComponent } from "vue";
 
 import { ref } from "vue";
-import FlightService from "@/services/FlightService";
-import MapV2 from "@/components/MapV2.vue";
-import Airbuddies from "@/components/Airbuddies.vue";
-import Barogramm from "@/components/Barogramm.vue";
-import trackColors from "@/assets/js/trackColors";
+import FlightService from "../services/FlightService";
+import MapV2 from "../components/MapV2.vue";
+import Airbuddies from "../components/Airbuddies.vue";
+import Barogramm from "../components/Barogramm.vue";
+import trackColors from "../assets/js/trackColors";
 import { format } from "date-fns";
-import InlineAlert from "@/components/InlineAlert.vue";
-import FlightDetails from "@/components/FlightDetails.vue";
-import Comments from "@/components/Comments.vue";
-import FlightDescription from "@/components/FlightDescription.vue";
+import InlineAlert from "../components/InlineAlert.vue";
+import FlightDetails from "../components/FlightDetails.vue";
+import Comments from "../components/Comments.vue";
+import FlightDescription from "../components/FlightDescription.vue";
 // import { Flight } from "@/types";
 
 export default defineComponent({
