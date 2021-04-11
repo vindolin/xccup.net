@@ -29,15 +29,15 @@ export interface GPSFix {
   timestamp: number;
   elevation: number;
 }
-enum RankingClass {
-  gsSport, 
-  gsIntermediate,
-  gsPerformance,
-  gsComp,
-  gsTandem,
-  hgFlex,
-  hgStarr
-}
+export type RankingClass =
+  "gsSport" | 
+  "gsIntermediate" |
+  "gsPerformance" |
+  "gsComp" |
+  "gsTandem" |
+  "hgFlex" |
+  "hgStarr"
+
 
 export interface AirbuddyTrack {
   buddyName: string
