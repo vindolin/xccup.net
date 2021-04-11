@@ -47,14 +47,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { CommentItem } from "../types";
 
 import { format } from "date-fns";
 export default defineComponent({
   name: "Comments",
   props: {
     comments: {
-      type: Array,
+      type: Array as PropType<CommentItem[]>,
       required: true,
     },
   },

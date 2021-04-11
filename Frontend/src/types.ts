@@ -30,18 +30,24 @@ export interface GPSFix {
   elevation: number;
 }
 export type RankingClass =
-  "gsSport" | 
-  "gsIntermediate" |
-  "gsPerformance" |
-  "gsComp" |
-  "gsTandem" |
-  "hgFlex" |
-  "hgStarr"
-
+  | "gsSport"
+  | "gsIntermediate"
+  | "gsPerformance"
+  | "gsComp"
+  | "gsTandem"
+  | "hgFlex"
+  | "hgStarr";
 
 export interface AirbuddyTrack {
-  buddyName: string
-  buddyFlightId: string
-  isActive: boolean
-  fixes: [GPSFix]
+  buddyName: string;
+  buddyFlightId: string;
+  isActive: boolean;
+  fixes: [GPSFix];
+}
+
+export interface CommentItem {
+  comment: number;
+  name: string;
+  date: string;
+  id: string;
 }
