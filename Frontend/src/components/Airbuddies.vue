@@ -61,7 +61,7 @@ export default defineComponent({
   name: "Airbuddies",
   data() {
     return {
-      checkedFlights: [] as String[],
+      checkedFlights: [] as string[],
       buddyFlights: [] as AirbuddyTrack[],
       trackColors: trackColors,
       loaded: false,
