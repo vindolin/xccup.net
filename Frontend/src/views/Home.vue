@@ -7,10 +7,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DailyRanking from "@/components/rankings/DailyRanking.vue";
-import Infobox from "@/components/Infobox.vue";
-import OverallResults from "@/components/OverallResults.vue";
-import Sponsors from "@/components/Sponsors.vue";
+import DailyRanking from "../components/rankings/DailyRanking.vue";
+import Infobox from "../components/Infobox.vue";
+import OverallResults from "../components/OverallResults.vue";
+import Sponsors from "../components/Sponsors.vue";
 
 export default defineComponent({
   name: "Home",
