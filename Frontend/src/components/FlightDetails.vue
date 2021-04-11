@@ -180,12 +180,12 @@ export default {
         flight.fixes[flight.fixes.length - 1].timestamp -
         flight.fixes[0].timestamp;
 
-      var seconds = parseInt((ms / 1000) % 60),
+      var /*seconds = parseInt((ms / 1000) % 60),*/
         minutes = parseInt((ms / (1000 * 60)) % 60),
         hours = parseInt((ms / (1000 * 60 * 60)) % 24);
 
       minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+      // seconds = seconds < 10 ? "0" + seconds : seconds;
 
       return hours + ":" + minutes + "h";
     },

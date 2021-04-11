@@ -29,7 +29,7 @@ export default {
 
   watch: {
     // Currently not in use because .update() crashes
-    datasets(newDatasets) {
+    datasets() {
       // Replace the datasets and call the update() method on Chart.js
       // instance to re-render the chart.
       // this.chart.data.datasets = newDatasets;
@@ -80,7 +80,7 @@ let options = {
       //   console.log(tooltipItem);
       //   return true;
       // },
-      external: function (tooltipModel) {
+      external: function (/*tooltipModel*/) {
         // console.log(tooltipModel);
         // if (tooltipModel.tooltip.dataPoints.length > 1) {
         //   const dataPointIdexes = [];
