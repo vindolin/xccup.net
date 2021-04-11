@@ -23,24 +23,27 @@
   <Comments :comments="comments" @comment-submitted="addComment" />
 </template>
 
-<script>
+<script lang="ts">
 // !!! Note to my future self !!!
 // The connection between Airbuddies, Barogramm and Map needs refactoring.
 // It's to ineffective and you can do better now.
 
+import { defineComponent } from "vue";
+
 import { ref } from "vue";
-import FlightService from "@/services/FlightService.ts";
-import MapV2 from "@/components/MapV2";
-import Airbuddies from "@/components/Airbuddies";
+import FlightService from "@/services/FlightService";
+import MapV2 from "@/components/MapV2.vue";
+import Airbuddies from "@/components/Airbuddies.vue";
 import Barogramm from "@/components/Barogramm.vue";
 import trackColors from "@/assets/js/trackColors";
 import { format } from "date-fns";
-import InlineAlert from "@/components/InlineAlert";
-import FlightDetails from "@/components/FlightDetails";
-import Comments from "@/components/Comments";
-import FlightDescription from "@/components/FlightDescription";
+import InlineAlert from "@/components/InlineAlert.vue";
+import FlightDetails from "@/components/FlightDetails.vue";
+import Comments from "@/components/Comments.vue";
+import FlightDescription from "@/components/FlightDescription.vue";
+import { Flight } from "@/types";
 
-export default {
+export default defineComponent({
   components: {
     MapV2,
     Airbuddies,
@@ -62,7 +65,7 @@ export default {
     let { data: description } = await FlightService.getDescription();
 
     return {
-      flight: ref(flight, comments, description),
+      flight: ref(flight),
       comments: ref(comments),
       description: ref(description[0]),
     };
@@ -182,7 +185,7 @@ export default {
       return tracklogs;
     },
   },
-};
+});
 </script>
 
 <style scoped></style>
