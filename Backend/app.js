@@ -1,6 +1,7 @@
-// DIRTY Is it really dirty?
-require("dotenv").config({ path: "./.env.local" });
+require("dotenv").config();
+// require("dotenv-flow").config();
 
+console.log(process.env.DB_SYNC_ALTER);
 const express = require("express");
 const app = express();
 const logger = require("./config/logger");
