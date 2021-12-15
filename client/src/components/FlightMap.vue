@@ -206,21 +206,15 @@ document.addEventListener(
 );
 
 const updateMarkerPosition = (position) => {
-  // Skip GND dataset
-  if (position.datasetIndex === 0) return;
   // Index - 1 because first dataset is GND and we need to skip that one
   const setIndex = position.datasetIndex - 1;
+
   const trackLog = tracklogs.value[setIndex];
   const logPosition = trackLog[position.dataIndex];
   const marker = positionMarkers.value[setIndex];
   if (logPosition && marker) {
     marker.setLatLng(logPosition);
   }
-
-  // Center map on pilot - currently too CPU intense. Needs refactoring
-  // if (positions.datasetIndex === 1) {
-  //   map.setView(tracklogs[0][positions.dataIndex]);
-  // }
 };
 </script>
 

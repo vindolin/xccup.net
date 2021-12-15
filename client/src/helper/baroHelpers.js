@@ -3,11 +3,20 @@ import Constants from "@/common/Constants";
 const trackColors = Constants.TRACK_COLORS;
 
 // Process tracklog data for barogramm
-export function processBaroData(flight, buddyTracks) {
+export function processBaroData(_flight, buddyTracks) {
   const allBaroData = [];
   const baroData = [];
   const elevation = [];
-  if (!flight) return null;
+  // WIP:
+  if (!_flight) return null;
+  let lastPosition = 0;
+  const flight = {};
+  flight.fixes = _flight.fixes.filter((fix) => {
+    if (lastPosition + 10000 > fix.timestamp) return false;
+    lastPosition = fix.timestamp;
+    return true;
+  });
+  console.log(_flight.fixes.length / flight.fixes.length);
   for (var i = 0; i < flight.fixes.length; i++) {
     elevation.push({
       x: flight.fixes[i].timestamp,

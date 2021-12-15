@@ -157,10 +157,16 @@ onMounted(() => {
           external: function () {},
           callbacks: {
             label: (context) => {
+              // Skip GND dataset
+              if (context.datasetIndex === 0) return;
+              // WIP:
+              let offset = 1;
+              if (context.datasetIndex === 1) offset = 2;
+              console.log(context.datasetIndex);
               // Update marker position on map view event listener
               const event = new CustomEvent("markerPositionUpdated", {
                 detail: {
-                  dataIndex: context.dataIndex,
+                  dataIndex: context.dataIndex * offset,
                   datasetIndex: context.datasetIndex,
                 },
               });
