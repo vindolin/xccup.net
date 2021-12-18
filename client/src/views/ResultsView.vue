@@ -25,7 +25,7 @@ import { ref, watchEffect, onMounted } from "vue";
 import { setWindowName } from "../helper/utils";
 import { Modal } from "bootstrap";
 import { useRoute } from "vue-router";
-import useData from "../composables/useData";
+import useData from "../composables/useDataView";
 
 const router = useRoute();
 
@@ -43,38 +43,38 @@ const props = defineProps({
 const remark = ref();
 const categories = [
   {
-    name: "overall",
+    name: "ResultsOverall",
     title: "Gesamtwertung",
     apiExtensionString: "",
   },
   {
-    name: "newcomer",
+    name: "ResultsNewcomer",
     title: "Newcomerwertung",
     apiExtensionString: "newcomer",
     remarks: () =>
       `Es werden nur Flüge mit Geräten bis zur ${results.value.constants.NEWCOMER_MAX_RANKING_CLASS} berücksichtigt`,
   },
   {
-    name: "seniors",
+    name: "ResultsSeniors",
     title: "Seniorenwertung",
     apiExtensionString: "seniors",
     remarks: () =>
       `Die Wertung beginnt ab einem Alter von ${results.value.constants.SENIOR_START_AGE} mit einem Bonus von ${results.value.constants.SENIOR_BONUS_PER_AGE}% pro Jahr`,
   },
   {
-    name: "ladies",
+    name: "ResultsLadies",
     title: "Damenwertung",
     apiExtensionString: "?gender=W",
   },
   {
-    name: "rlp-state",
+    name: "ResultsRlp",
     title: "Landesmeisterschaft RLP",
     apiExtensionString: "?state=RP",
     remarks: () =>
       `Es zählt die Heimataddresse eines Piloten die zum Zeitpunkt des Fluges in seinem Profil hinterlegt war`,
   },
   {
-    name: "lux-state",
+    name: "ResultsLux",
     title: "Luxemburg Championat",
     apiExtensionString: "?state=LUX",
     remarks: () =>

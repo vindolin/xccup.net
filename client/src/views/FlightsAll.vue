@@ -6,38 +6,47 @@
     <div class="row">
       <div class="col-6">
         <FilterPanel
-          :api-endpoint="ApiService.getFlights"
+          :view-component-name="componentName"
           @show-filter="showFilter"
         />
       </div>
       <div class="col-6">
         <PaginationPanel
-          :api-endpoint="ApiService.getFlights"
+          :view-component-name="componentName"
           entry-name="Flüge"
         />
       </div>
     </div>
     <BaseError :error-message="errorMessage" />
-    <ResultsTableOverall />
-    <ModalFilterFlights />
+    <ResultsTableOverall :view-component-name="componentName" />
+    <ModalFilterFlights :view-component-name="componentName" />
   </div>
 </template>
 
 <script setup>
 import ApiService from "@/services/ApiService";
-import { onMounted } from "vue";
+import { onMounted, watchEffect } from "vue";
 import { setWindowName } from "../helper/utils";
 import { Modal } from "bootstrap";
-import useData from "@/composables/useData";
+import useData from "@/composables/useDataView";
 import { useRoute } from "vue-router";
 
 setWindowName("Streckenmeldungen");
 
 const route = useRoute();
 
-const { fetchData, errorMessage } = useData(ApiService.getFlights);
+const componentName = route.params.year ? "FlightsAllYear" : "FlightsAll";
 
-fetchData({ params: route.params, queries: route.query });
+console.log("CN: ", componentName);
+
+const { fetchData, errorMessage } = useData(componentName);
+
+watchEffect(() => {
+  fetchData(ApiService.getFlights, {
+    params: route.params,
+    queries: route.query,
+  });
+});
 
 let filterModal;
 onMounted(() => {

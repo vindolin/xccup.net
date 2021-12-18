@@ -21,16 +21,18 @@
 </template>
 
 <script setup>
-import useData from "../composables/useData";
+import useData from "../composables/useDataView";
 
 const props = defineProps({
-  apiEndpoint: {
-    type: Function,
+  viewComponentName: {
+    type: String,
     required: true,
   },
 });
 
-const { clearFilter, filterActive, isLoading } = useData(props.apiEndpoint);
+const { clearFilter, filterActive, isLoading } = useData(
+  props.viewComponentName
+);
 
 const emit = defineEmits(["show-filter"]);
 

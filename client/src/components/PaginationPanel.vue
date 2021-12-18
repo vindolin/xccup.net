@@ -90,12 +90,12 @@
 </template>
 
 <script setup>
-import useData from "../composables/useData";
+import useData from "../composables/useDataView";
 import { ref, watch, computed } from "vue";
 
 const props = defineProps({
-  apiEndpoint: {
-    type: Function,
+  viewComponentName: {
+    type: String,
     required: true,
   },
   entryName: {
@@ -105,21 +105,18 @@ const props = defineProps({
 });
 
 const {
-  fetchData,
+  paginatBy,
   numberOfTotalEntries,
-  DEFAULT_LIMIT,
   LIMIT_OPTIONS,
   currentRange,
-} = useData(props.apiEndpoint);
+  limitCache,
+} = useData(props.viewComponentName);
 
-const numberEntriesPerPage = ref(DEFAULT_LIMIT);
+const numberEntriesPerPage = ref(limitCache);
 
 watch(numberEntriesPerPage, () => {
   //Don't use watchEffect because this will always run once on setup and cause a second unneccessary request
-  fetchData({
-    limit: numberEntriesPerPage.value,
-    offset: currentRange.value.start - 1,
-  });
+  paginatBy(numberEntriesPerPage.value, currentRange.value.start - 1);
 });
 
 const multiplePagesExists = computed(
@@ -136,28 +133,25 @@ const disableIfNoNextEntriesAvailable = computed(() => {
 
 const onFirst = () => {
   if (disableIfNoPreviousEntriesAvailable.value) return;
-  fetchData({ limit: numberEntriesPerPage.value, offset: 0 });
+  paginatBy(numberEntriesPerPage.value, 0);
 };
 const onPrevious = () => {
   if (disableIfNoPreviousEntriesAvailable.value) return;
-  fetchData({
-    limit: numberEntriesPerPage.value,
-    offset: currentRange.value.start - numberEntriesPerPage.value - 1,
-  });
+  paginatBy(
+    numberEntriesPerPage.value,
+    currentRange.value.start - numberEntriesPerPage.value - 1
+  );
 };
 const onNext = () => {
   if (disableIfNoNextEntriesAvailable.value) return;
-  fetchData({
-    limit: numberEntriesPerPage.value,
-    offset: currentRange.value.end,
-  });
+  paginatBy(numberEntriesPerPage.value, currentRange.value.end);
 };
 const onLast = () => {
   if (disableIfNoNextEntriesAvailable.value) return;
-  fetchData({
-    limit: numberEntriesPerPage.value,
-    offset: numberOfTotalEntries.value - numberEntriesPerPage.value,
-  });
+  paginatBy(
+    numberEntriesPerPage.value,
+    numberOfTotalEntries.value - numberEntriesPerPage.value
+  );
 };
 </script>
 

@@ -3,16 +3,10 @@
     <h3>Registrierte Piloten</h3>
     <div class="row">
       <div class="col-6">
-        <FilterPanel
-          :api-endpoint="ApiService.getUsers"
-          @show-filter="showFilter"
-        />
+        <FilterPanel view-component-name="Users" @show-filter="showFilter" />
       </div>
       <div class="col-6">
-        <PaginationPanel
-          :api-endpoint="ApiService.getUsers"
-          entry-name="Piloten"
-        />
+        <PaginationPanel view-component-name="Users" entry-name="Piloten" />
       </div>
     </div>
     <BaseError :error-message="errorMessage" />
@@ -25,16 +19,16 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import ApiService from "@/services/ApiService";
 import { setWindowName } from "../helper/utils";
 import { Modal } from "bootstrap";
-import useData from "../composables/useData";
+import useData from "../composables/useDataView";
 import { useRoute } from "vue-router";
 import BaseError from "../components/BaseError.vue";
 
 const router = useRoute();
-const { fetchData, data: users, errorMessage } = useData(ApiService.getUsers);
+const { fetchData, data: users, errorMessage } = useData("Users");
 
 const mailModalId = ref("userMailModal");
 const selectedUser = ref(null);
@@ -53,7 +47,12 @@ const messageUser = (user) => {
   mailModal.show();
 };
 
-fetchData({ params: { records: true }, queries: router.query });
+watchEffect(() => {
+  fetchData(ApiService.getUsers, {
+    params: { records: true },
+    queries: router.query,
+  });
+});
 
 const showFilter = () => {
   filterModal.show();

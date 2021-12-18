@@ -82,10 +82,16 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-import useData from "../composables/useData";
-import ApiService from "../services/ApiService";
+import useData from "../composables/useDataView";
 
-const { data: flights, sortDataBy } = useData(ApiService.getFlights);
+const props = defineProps({
+  viewComponentName: {
+    type: String,
+    required: true,
+  },
+});
+
+const { data: flights, sortDataBy } = useData(props.viewComponentName);
 const router = useRouter();
 
 const currentSortColumnKey = ref(null);
