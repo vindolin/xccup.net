@@ -34,8 +34,10 @@
             >
               Profil
             </button>
+
             <button
               id="nav-hangar-tab"
+              ref="navHangarTab"
               class="nav-link"
               data-bs-toggle="tab"
               data-bs-target="#nav-hangar"
@@ -44,10 +46,17 @@
               aria-controls="nav-hangar"
               aria-selected="false"
             >
-              Hangar
+              <router-link
+                :to="{
+                  name: 'ProfileHangar',
+                }"
+              >
+                Hangar
+              </router-link>
             </button>
             <button
               id="nav-change-pw-tab"
+              ref="navPasswordTab"
               class="nav-link"
               data-bs-toggle="tab"
               data-bs-target="#nav-change-pw"
@@ -56,7 +65,13 @@
               aria-controls="nav-change-pw"
               aria-selected="false"
             >
-              Passwort ändern
+              <router-link
+                :to="{
+                  name: 'ProfilePassword',
+                }"
+              >
+                Passwort ändern
+              </router-link>
             </button>
             <button
               id="nav-my-flights-tab"
@@ -130,13 +145,9 @@ setWindowName("Profil");
 // TODO: Remember the opened tab when navigating back to profile
 
 const props = defineProps({
-  edit: {
-    type: Boolean,
-    default: false,
-  },
-  showHangar: {
-    type: Boolean,
-    default: false,
+  tab: {
+    type: [String, null],
+    default: null,
   },
 });
 
@@ -146,11 +157,20 @@ const { fetchProfile, userData } = useUserProfile();
 fetchProfile();
 
 const editAvatarModal = ref(null);
+const navHangarTab = ref(null);
+const navPasswordTab = ref(null);
 onMounted(() => {
   editAvatarModal.value = new Modal(document.getElementById("userAvatarModal"));
   // Navigate to hangar tab via props
-  let hangarTab = new Tab(document.querySelector("#nav-hangar-tab"));
-  if (props.showHangar) hangarTab.show();
+  let hangarTab = new Tab(navHangarTab.value);
+  let passwordTab = new Tab(navPasswordTab.value);
+  // let passwordTab = new Tab(document.querySelector("#nav-hangar"));
+  console.log(props);
+  if (props.tab === "hangar") hangarTab.show();
+  if (props.tab === "password") passwordTab.show();
+
+  // if (route.params.tab == "change-password") passwordTab.show();
+  // if (route.params.tab == "my-flights") myFlightsTab.show();
 });
 
 const avatarUrl = computed(() => getUserAvatar(userData.value, true));
