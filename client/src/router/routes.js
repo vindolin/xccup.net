@@ -130,24 +130,28 @@ export const Routes = [
   {
     path: "/profil",
     name: "Profile",
-    props: true,
     meta: { toTop: true, smoothScroll: true, requiredAuth: true },
-    component: () => import("../views/UserProfile.vue"),
-  },
-  {
-    path: "/profil/bearbeiten",
-    name: "ProfileEdit",
-    props: { edit: true },
-    meta: { requiredAuth: true },
-
     component: () => import("../views/UserProfile.vue"),
   },
   {
     path: "/profil/hangar",
     name: "ProfileHangar",
-    props: { showHangar: true },
+    props: { tab: "hangar" },
     meta: { requiredAuth: true },
-
+    component: () => import("../views/UserProfile.vue"),
+  },
+  {
+    path: "/profil/password",
+    name: "ProfilePassword",
+    props: { tab: "password" },
+    meta: { requiredAuth: true },
+    component: () => import("../views/UserProfile.vue"),
+  },
+  {
+    path: "/profil/meine-fluege",
+    name: "ProfileFlights",
+    props: { tab: "flights" },
+    meta: { requiredAuth: true },
     component: () => import("../views/UserProfile.vue"),
   },
   {
