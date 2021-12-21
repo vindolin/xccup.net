@@ -46,33 +46,26 @@
               aria-controls="nav-hangar"
               aria-selected="false"
             >
-              <router-link
-                :to="{
-                  name: 'ProfileHangar',
-                }"
-              >
+              <router-link :to="{ name: 'ProfileHangar' }">
                 Hangar
               </router-link>
             </button>
-            <button
-              id="nav-change-pw-tab"
-              ref="navPasswordTab"
-              class="nav-link"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-change-pw"
-              type="button"
-              role="tab"
-              aria-controls="nav-change-pw"
-              aria-selected="false"
-            >
-              <router-link
-                :to="{
-                  name: 'ProfilePassword',
-                }"
+
+            <router-link :to="{ name: 'ProfilePassword' }">
+              <button
+                id="nav-change-pw-tab"
+                ref="navPasswordTab"
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-change-pw"
+                type="button"
+                role="tab"
+                aria-controls="nav-change-pw"
+                aria-selected="false"
               >
                 Passwort ändern
-              </router-link>
-            </button>
+              </button>
+            </router-link>
             <button
               id="nav-my-flights-tab"
               class="nav-link"
