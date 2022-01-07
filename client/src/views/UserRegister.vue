@@ -67,7 +67,7 @@
             <BaseDatePicker
               id="birthday"
               v-model="userData.birthday"
-              label="Geburstag"
+              label="Geburtstag"
               starting-view="year"
               :upper-limit="initialDate"
             />
